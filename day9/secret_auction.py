@@ -21,26 +21,31 @@ logo = '''
 
 print (logo)
 
-game_end = False
-
 bids = {}
+bids_finish = False
 
-while not game_end:
+def find_highest(bids):
+    highest_bid = 0
+    winner = ""
 
-  name = input("What is your name?\n")
-  bid = int(input("How much are you bidding? $"))
+    for i in bids:
+        amt = bids[i]
+        if amt > highest_bid:
+            highest_bid = amt
+            winner = i
 
-  bids[name] = bid
-  game = input("Are there any other bidders. yes or no\n").lower()
+    print(f"The winner is {winner} with the bid of ${highest_bid}")
 
-  if game == "no":
-    game_end = True
+while not bids_finish:
+    name = input("Enter your name: ")
+    price = int(input("What is your bid $"))
+    bids[name] = price 
+    # name is string already and price int
 
-highest_bid = 0
+    should_continue = input("Are there any other for bid? 'yes' 'no': ").lower()
 
-for bidder in bids:
-  if bid > highest_bid:
-    highest_bid = bid
-    winner = bidder
-print(f"The winner is {bidder} with a bid of ${highest_bid}")
-clear()
+    if should_continue == 'no':
+        bids_finish = True
+        print(find_highest(bids))
+    elif should_continue == 'yes':
+        clear()
