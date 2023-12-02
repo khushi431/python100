@@ -1,4 +1,10 @@
+import os
 
+def clear():
+    if os.name == 'nt':  # For Windows
+        os.system('cls')
+    else:  # For Unix-like systems (Linux, macOS)
+        os.system('clear')
 logo = '''
                          ___________
                          \         /
@@ -9,7 +15,7 @@ logo = '''
                           |_______| '-' `'---------'` '-'
                           )"""""""(
                          /_________\\
-                       .-------------.
+                       .-------------. 
                       /_______________\\
 '''
 
@@ -37,3 +43,4 @@ for bidder in bids:
     highest_bid = bid
     winner = bidder
 print(f"The winner is {bidder} with a bid of ${highest_bid}")
+clear()
